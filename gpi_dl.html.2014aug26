@@ -1,0 +1,329 @@
+<!DOCTYPE html><html>
+<head>
+    <title>GPI Releases</title>
+
+    <script src='jquery-1.8.3.min.js'></script>
+    <script src='jquery.elevatezoom.js'></script>
+
+    <style>
+    p
+    {
+        max-width:700px;
+    }
+    </style>
+
+    <style>
+    figcaption 
+    {
+        max-width:700px;
+    }
+    </style>
+
+</head>
+<body>
+<figure>
+    <img src=./banner.png height="200" alt="GPI the Graphical Programming Interface.">
+    <figcaption align="left" style="MARGIN-LEFT: 64px"><font size="5"><i>Powered by Anaconda</i></font></figcaption>
+    <figcaption align="right" style="MARGIN-RIGHT: 64px"><font size="3"><i>Last Update: 2014-04-25 11:46:30.299387</i></font></figcaption>
+</figure>
+
+
+<hr>
+<dt>
+<dd><a href="#FrontMatter"><font size="5">GPI v0.2</font></a></dd>
+<dd><a href="#Changelog"><font size="5">What's New</font></a></dd>
+<dd><a href="#Xmit"><font size="5">Node Submission Instructions</font></a></dd>
+<dd><a href="#Installation"><font size="5">Installation</font></a></dd>
+<dd><a href="#Documentation"><font size="5">Documentation</font></a></dd>
+<dd><a href="#Downloads"><font size="5">Downloads</font></a></dd>
+</dt>
+
+<hr>
+<h1><a name="FrontMatter">GPI v0.2: The Aughty Deuce</a></h1>
+
+<p>
+GPI v0.2 "Aughty Deuce" is now available in native Linux (Ubuntu 12.04-13.10) and OSX (10.8 & 10.9) installer packages as well as on Linux virtual machine (Ubuntu 12.04) in the <a href="#Downloads">Downloads</a> section.
+
+</p>
+
+<figure>
+    <img src="gpi.gif" alt="Example Canvases" width="900">
+</figure>
+
+
+
+<hr>
+<h1><a name="Changelog">What's New in Version 0.2</a></h1>
+<p>
+
+</p>
+
+<dl>
+
+<dt><i>Package Releases</i></dt><br>
+<dd>&bull; This release is available in native packages for OSX and Linux as well as a Linux virtual machine.  The package is built upon the multi-platform Python distribution "Anaconda", from Continuum Analytics.  The packages also contains an installer for maximum convenience.</dd><br>
+<dd>&bull; The OSX package has been tested on 10.8 and 10.9.  The OSX package comes with an app launcher that allows OS file associations to be made for GPI.  File associations that GPI understands by default are .png, .jpg, .csv, .hdf5, .data, .list, .raw, .npy, .lab, .par, .rec, .pickle and .sin.</dd><br>
+<dd>&bull; The Linux package has been tested on Ubuntu 12.04, 13.04 and 13.10.  GPI on 13.10 requires XFCE or KDE desktop managers for faithful GUI display.  The Linux VM uses Ubuntu 12.04.</dd><br>
+<dd>&bull; Several packaged libraries have been updated including numpy, scipy, and matplotlib.  Pyopencl has been included in the OSX package.</dd><br>
+
+<dt><i>GUI Updates</i></dt><br>
+<dd>&bull; The status bar now contains the canvas walltime and total port memory held by the canvas.</dd><br>
+
+<figure>
+    <img src="walltime.jpg" alt="Canvas Info" width="556">
+    <figcaption>More canvas info.</figcaption>
+</figure>
+
+<dd>&bull; Multi-drag-n-drop is now supported by the canvas.  This includes network files, associated files, and GPI node descriptions.</dd><br>
+<dd>&bull; A "percent-done" graphic is shown next to long running nodes.  This is currently available as an estimate based on previous runtimes.</dd><br>
+
+<figure>
+    <img src="pdone.jpg" alt="Percent Done" width="256">
+    <figcaption>Percent done.</figcaption>
+</figure>
+
+<dd>&bull; Data sharing between GPI processes has been threaded to prevent the GUI from locking up on large data sets.</dd><br>
+<dd>&bull; Node menus now have a corner grip (arguably one of the most important updates in Aughty) and a "Close-all" feature located in the main menu.</dd><br>
+
+<table>
+<tr>
+<td>
+<figure>
+    <img src="grip.jpg" alt="Corner Node Menu Grip" width="256">
+    <figcaption>The corner grip.</figcaption>
+</figure>
+</td>
+<td>
+<figure>
+    <img src="closeall.jpg" alt="Close all menu option" width="356">
+    <figcaption>Remove the clutter in a single click.</figcaption>
+</figure>
+</td>
+</tr>
+
+</table>
+
+<dt><i>Commandline Interface</i></dt><br>
+<dd>&bull; The commandline interface allows GPI to run as a scriptable element in a batch process.</dd><br>
+<dd>&bull; String arguments can be passed to String nodes allowing networks to be parameterized with filenames, directories, numbers and anything passable via a string.</dd><br>
+<dd>&bull; Multiple networks, nodes, and associated files can be passed as commandline arguments for quick workspace loading.</dd><br>
+<dd>&bull; The log level can also be pre-set using this interface.</dd><br>
+
+<dt><i>Config File (.gpirc)</i></dt><br>
+<dd>&bull; A configuration file in the user's home directory can be used to set node-library paths, file associations and configure the gpi_make.</dd><br>
+<dd>&bull; Library paths set in this file will also be included in the gpi_make for cross-library-linking and include file resolution.</dd><br>
+
+<dt><i>2-Level Library Scope</i></dt><br>
+<dd>&bull; Libraries are now 2-levels allowing developers to have their own library and use sub-library names that alias the 'core' packaged library.</dd><br>
+<dd>&bull; Nodes are now searched for by scope allowing multiple nodes to have the same name.</dd><br>
+
+<figure>
+    <img src="library.jpg" alt="Library Scope" width="356">
+    <figcaption>2-level library scope.</figcaption>
+</figure>
+
+<dt><i>Network File Upgrade (v2)</i></dt><br>
+<dd>&bull; The network files now save information about node and canvas timing, machine specs and the new library scope.</dd><br>
+<dd>&bull; The new format is mostly backwards compatible with pre-v2 networks (provided that all the nodes are also included in the library path).</dd><br>
+
+<dt><i>PyFI</i></dt><br>
+<dd>&bull; The Python Function Interface code has been updated with a new Array package (similar to the R2 arrays).  This packages provides slightly faster indexing, and index range check mode (for debugging), stacktraces and a simple FFTW interface.</dd><br>
+<dd>&bull; A PyCallable interface object has also been added for embedding Python calls in C++.  This provides a simple interface for calling functions that may not yet be available in the C++ interface, but allow the developer to leverage the vast Python library.  Included interfaces are Numpy::pinv() (pseudo inverse), Numpy::printArray(), Numpy::fft1() as examples of how this may be used.</dd><br>
+<dd>&bull; Error messages now demangle the variable types, for easier error interpretation.</dd><br>
+<dd>&bull; Support for C++ templated functions -providing a way of making typed functions available to Python.</dd><br>
+<dd>&bull; Updated PyFI macros further reduce the amount of code needed to define a PyMOD.</dd><br>
+
+<dt><i>NodeAPI</i></dt><br>
+<dd>&bull; Support for initUI() return codes.</dd><br>
+<dd>&bull; New event API that keeps all events that initiated execution.  Added deprecations warnings to the old interface.</dd><br>
+
+<dt><i>Nodes</i></dt><br>
+<dd>&bull; All 'core' PyMODs have been updated to use the new PyFI::Array class.</dd><br>
+<dd>&bull; ReadPhilips now supports a lab/raw/sin reader, xml/par/rec (with HIFU bug fixes), noise and phase correction outputs and an updated display that includes labels for dimensions.</dd><br>
+<dd>&bull; The 'mathematics' library has been renamed to 'math'.</dd><br>
+<dd>&bull; Elem_Math node has been renamed to Math.</dd><br>
+<dd>&bull; Added ReadImage & WriteImage for .png or .jpg.</dd><br>
+<dd>&bull; Added DataQuery for looking through data arrays.</dd><br>
+<dd>&bull; Added ImageCompare & ImageRate for performing paired comparisons.</dd><br>
+<dd>&bull; Updated DictionQuery to use a search key.</dd><br>
+<dd>&bull; Added ReadCSV & WriteCSV for ascii, comma separated values.</dd><br>
+<dd>&bull; Added ReadHDF5 & WriteHDF5 (still basic, under development).</dd><br>
+<dd>&bull; Added ReadPhysioLog for scanner physiologic sensor recordings.</dd><br>
+<dd>&bull; Added DegridDFT for trajectory data simulation.</dd><br>
+<dd>&bull; Added Alert for making a noise when a process has finished.</dd><br>
+<dd>&bull; Added AutoNum in place of IntegerLoop (does float, int, and has a better UI).</dd><br>
+<dd>&bull; Compare (find scale RMS diff between two NPY arrays).</dd><br>
+<dd>&bull; Updated Dimensions to handle events.</dd><br>
+<dd>&bull; Updated the ToComplex UI.</dd><br>
+</dt>
+
+
+<dt><i>Bugfixes</i></dt><br>
+<dd>&bull; Networks correctly save widget-port connections. </dd><br>
+<dd>&bull; Corrected getWidget() error message (the bug threw exception during the error message creation) when using methods like getAttr() or setAttr().</dd><br>
+<dd>&bull; Better node-process stability: fixed an issue causing zombie processes.</dd><br>
+
+</dl>
+
+
+<hr>
+<h1><a name="Xmit">Node Submission Instructions</a></h1>
+<p>
+The entries in the 'Downloads' section follow a simple filename format consisting
+of the node name and submission date.  Additional files such as a screenshot and
+a text file can be included to fill in the 'Description' and 'Screenshot' columns.
+Please mail your submissions to <a href="mailto:philips.gpi@gmail.com">philips.gpi@gmail.com</a>.
+</p>
+
+Filename format:
+<table style="MARGIN-LEFT: 64px" cellpadding="0" cellspacing="10">
+<tr align="left"> <td>&#60;Name&#62;-&#60;Date&#62;.zip</td> <td>The date format is: YYYYMMMDD using 3-letter month abbreviations. </td> </tr>
+<tr align="left"> <td>Example:</td> </tr>
+<tr> <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;MyNode-2013Nov10.zip</td> <td align="left">Zip up your code, directories, PyMODs etc...</td> </tr>
+<tr> <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;MyNode-2013Nov10.png</td> <td align="left">A PNG screenshot using the same basename.</td></tr>
+<tr> <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;MyNode-2013Nov10.txt</td> <td align="left">Some descriptive text about the node.</td> </tr>
+</table>
+
+
+<hr>
+<h1><a name="Installation">Installation</a></h1>
+
+<p><i>Recommended Minimum Hardware</i></p>
+<ul>
+<li>4-Core Intel 64bit Processor</li>
+<li>8GB RAM System Memory</li>
+<li>50GB Harddisk Space</li>
+<li>3-Button Mouse w/ Scroll Wheel</li>
+</ul>
+
+
+<p><i>OSX</i></p>
+<ul>
+<li>Download the OSX zipped '.mpkg' installer package.  Unzip the package by double clicking, then double click the '.mpkg' file to start the installer.  The installer will inform you that for C++ node development you will need to install Xcode and the Xcode-commandline tools (not necessary for pure-Python development).  For commandline operation and make script you'll need to modify your environment PATH variable.  The installation will require admin privileges. 
+</li>
+
+<ul>
+  <li>Setting PATH</li>
+  <ul>
+    <li>Add the following line to your ~/.bashrc file.<br>
+    <code><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;export PATH="/opt/gpi/bin:$PATH"
+    </code>
+    </li>
+  </ul>
+  <br>
+  <li>Xcode.app</li>
+  <ul>
+    <li>Download from the App Store.</li>
+  </ul>
+  <li>Command Line Tools for Xcode Package (Apple Developer)</li>
+  <ul>
+    <li>After installing Xcode go to the Xcode Menu -> Open Developer Tool -> More Developer Tools...</li>
+  </ul>
+</ul>
+</ul>
+
+<p><i>Ubuntu Linux</i></p>
+<ul>
+    <li>Download the self-extracting shell script '.run' file and run as root (replacing the "&lt;gpi package&gt;" with the package name of the downloaded installer file):<br>
+    <code>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;$ sudo bash GPI_&lt;gpi package&gt;.run
+    </code>
+    </li>
+    <br>
+  <ul>
+    <li>To install build utilities for C++ run the following command:<br>
+    <code><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;$ sudo apt-get install build-essential
+    </code>
+    </li>
+  </ul>
+  <br>
+
+  <ul>
+    <li>Add the following line to your ~/.bashrc file.<br>
+    <code><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;export PATH="/opt/gpi/bin:$PATH"
+    </code>
+    </li>
+  </ul>
+
+</ul>
+
+
+<p><i>Ubuntu Linux Virtual Machine</i></p>
+<ul>
+    <li>Download the Linux virtual machine for VMWare.</li>
+    <li>Unzip the virtual machine in the directory where you want it to live.</li>
+    <li>Open with VMWare Fusion / VMPlayer >= 5.0.</li>
+</ul>
+
+<hr>
+<h1><a name="Documentation">Documentation</a></h1>
+
+<ul>
+<li><a href=./QuickStart.pdf>Quick Start Guide</a></li>
+<li><a href=./README.pdf>README</a></li>
+
+</ul>
+
+
+<p>More GPI documentation can be found by clicking the Help->Documentation option from the main menu.
+</p>
+<figure>
+    <img src="helpdocs.jpg" alt="Documentation" width="556">
+    <figcaption>GPI documentation.</figcaption>
+</figure>
+
+
+<hr>
+    <h1><a name="Downloads">Downloads</a></h1>
+
+    <p>
+    NOTE: If you are planning on transitioning nodes from the v0.1-beta release, take a look at the Node Developer's Guide, section 4.4.
+    </p>
+
+    <p>
+NOTE: OSX 10.8 and 10.9 includes a security feature known as Gatekeeper which limits users' ability to install software which does not come from the Apple Store or is not digitally signed by the developer using a code from Apple.  The current installer is not a signed application, so trying to install it on OSX will require changing your security settings.
+
+You can do this by going under the Apple menu to System Preferences > Security & Privacy and under "Allow applications downloaded from:" setting from "Mac App Store" to "Anywhere".  This will allow you to install GPI.  Make sure that after installing GPI you reset your security settings to the level that meets your needs.
+    </p>
+<table cellpadding="0" cellspacing="10"><tr> <th>Name</th> <th>Last Modified</th> <th>Size</th> <th>Description</th> <th>Screenshot</th> </tr><tr><th colspan="5"><hr style="border:dashed #C0C0C0; border-width:1px" width="90%"></th></tr><tr> <td nowrap><a href=../GPI_downloads/ReadPhilips-r8720-2014Apr25.zip download target="_blank">ReadPhilips-r8720-2014Apr25.zip</a>, <a href=../GPI_downloads/ReadPhilips-r8720-2014Apr25.zip.md5sum>MD5</a></td> <td nowrap align="right">2014-04-25</td> <td nowrap align="right"> 23KB</td> <td align="left">Bugfix for .lab/.raw/.sin when reading non-standard labels.  Generalizes the label reading to accommodate research acquisitions.
+</td> <td nowrap> </td> </tr><tr> <td nowrap><a href=../GPI_downloads/GPI_v0.2-Linux-2014Apr14.run download target="_blank">GPI_v0.2-Linux-2014Apr14.run</a>, <a href=../GPI_downloads/GPI_v0.2-Linux-2014Apr14.run.md5sum>MD5</a></td> <td nowrap align="right">2014-04-14</td> <td nowrap align="right">1.7GB</td> <td align="left">GPI v0.2 installer for Linux (tested on Ubuntu 12.04-13.10).  <em>NOTE: GPI on Ubuntu 13.10 requires XFCE or KDE desktop managers for faithful GUI display.</em>
+</td> <td nowrap><a href=../GPI_downloads/GPI_v0.2-Linux-2014Apr14.png><img id="zimg2" src="../GPI_downloads/GPI_v0.2-Linux-2014Apr14.png" data-zoom-image="../GPI_downloads/GPI_v0.2-Linux-2014Apr14.png" height=56 width=100></a></td> </tr><tr> <td nowrap><a href=../GPI_downloads/GPI_v0.2-OSX-2014Apr14.zip download target="_blank">GPI_v0.2-OSX-2014Apr14.zip</a>, <a href=../GPI_downloads/GPI_v0.2-OSX-2014Apr14.zip.md5sum>MD5</a></td> <td nowrap align="right">2014-04-14</td> <td nowrap align="right">2.2GB</td> <td align="left">GPI v0.2 installer for OSX 10.8 and 10.9.
+</td> <td nowrap><a href=../GPI_downloads/GPI_v0.2-OSX-2014Apr14.png><img id="zimg3" src="../GPI_downloads/GPI_v0.2-OSX-2014Apr14.png" data-zoom-image="../GPI_downloads/GPI_v0.2-OSX-2014Apr14.png" height=56 width=100></a></td> </tr><tr> <td nowrap><a href=../GPI_downloads/GPI_v0.2-VM-2014Apr14.zip download target="_blank">GPI_v0.2-VM-2014Apr14.zip</a>, <a href=../GPI_downloads/GPI_v0.2-VM-2014Apr14.zip.md5sum>MD5</a></td> <td nowrap align="right">2014-04-14</td> <td nowrap align="right">2.7GB</td> <td align="left">GPI v0.2 & Ubuntu 12.04 VMWare virtual machine.  Requires VMWare Fusion/Player &ge; 5.
+</td> <td nowrap><a href=../GPI_downloads/GPI_v0.2-VM-2014Apr14.png><img id="zimg4" src="../GPI_downloads/GPI_v0.2-VM-2014Apr14.png" data-zoom-image="../GPI_downloads/GPI_v0.2-VM-2014Apr14.png" height=56 width=100></a></td> </tr><tr> <td nowrap><a href=../GPI_downloads/ReadPhilips-r8006-2014Jan27.zip download target="_blank">ReadPhilips-r8006-2014Jan27.zip</a>, <a href=../GPI_downloads/ReadPhilips-r8006-2014Jan27.zip.md5sum>MD5</a></td> <td nowrap align="right">2014-01-27</td> <td nowrap align="right"> 21KB</td> <td align="left">Added support for lab/raw/sin data sets.  Updated commandline interface to readPhilipsExports.py.
+</td> <td nowrap> </td> </tr><tr> <td nowrap><a href=../GPI_downloads/ExampleDataSets-2013Dec16.zip download target="_blank">ExampleDataSets-2013Dec16.zip</a>, <a href=../GPI_downloads/ExampleDataSets-2013Dec16.zip.md5sum>MD5</a></td> <td nowrap align="right">2013-12-16</td> <td nowrap align="right">1.5GB</td> <td align="left">Data sets provided during the GPI training course for testing the ReadPhilips node.
+</td> <td nowrap> </td> </tr><tr> <td nowrap><a href=../GPI_downloads/PyMatBridge_GPI-r7831-2013Dec04.zip download target="_blank">PyMatBridge_GPI-r7831-2013Dec04.zip</a>, <a href=../GPI_downloads/PyMatBridge_GPI-r7831-2013Dec04.zip.md5sum>MD5</a></td> <td nowrap align="right">2013-12-04</td> <td nowrap align="right">  2KB</td> <td align="left">This is a MATLAB to Python bridge node that allows the user to enter and execute
+MATLAB code within the node menu interface.  It requires PyMatBridge and a copy
+of MATLAB.  <em> NOTE: This was from a pre-alpha release and has not been developed
+since.  Updates are welcome. </em>
+
+
+</td> <td nowrap><a href=../GPI_downloads/PyMatBridge_GPI-r7831-2013Dec04.png><img id="zimg5" src="../GPI_downloads/PyMatBridge_GPI-r7831-2013Dec04.png" data-zoom-image="../GPI_downloads/PyMatBridge_GPI-r7831-2013Dec04.png" height=56 width=100></a></td> </tr><tr> <td nowrap><a href=../GPI_downloads/Array_GPI-2013Nov26.zip download target="_blank">Array_GPI-2013Nov26.zip</a>, <a href=../GPI_downloads/Array_GPI-2013Nov26.zip.md5sum>MD5</a></td> <td nowrap align="right">2013-11-26</td> <td nowrap align="right">903bytes</td> <td align="left">Array generates an ndarray with specified dimensions that is filled with zeros, ones, or uniform or normal random deviates. <strong> Author: David Smith.
+</td> <td nowrap><a href=../GPI_downloads/Array_GPI-2013Nov26.png><img id="zimg0" src="../GPI_downloads/Array_GPI-2013Nov26.png" data-zoom-image="../GPI_downloads/Array_GPI-2013Nov26.png" height=56 width=100></a></td> </tr><tr> <td nowrap><a href=../GPI_downloads/RankReduce_GPI-2013Nov26.zip download target="_blank">RankReduce_GPI-2013Nov26.zip</a>, <a href=../GPI_downloads/RankReduce_GPI-2013Nov26.zip.md5sum>MD5</a></td> <td nowrap align="right">2013-11-26</td> <td nowrap align="right">776bytes</td> <td align="left">Performs SVD rank reduction on an input matrix. <strong> Author: David Smith.
+</td> <td nowrap><a href=../GPI_downloads/RankReduce_GPI-2013Nov26.png><img id="zimg6" src="../GPI_downloads/RankReduce_GPI-2013Nov26.png" data-zoom-image="../GPI_downloads/RankReduce_GPI-2013Nov26.png" height=56 width=100></a></td> </tr><tr> <td nowrap><a href=../GPI_downloads/SheppLogan_GPI-2013Nov26.zip download target="_blank">SheppLogan_GPI-2013Nov26.zip</a>, <a href=../GPI_downloads/SheppLogan_GPI-2013Nov26.zip.md5sum>MD5</a></td> <td nowrap align="right">2013-11-26</td> <td nowrap align="right">  3KB</td> <td align="left">Generates a Shepp-Logan phantom of a specified size.  <strong> Author: David Smith.
+</td> <td nowrap><a href=../GPI_downloads/SheppLogan_GPI-2013Nov26.png><img id="zimg11" src="../GPI_downloads/SheppLogan_GPI-2013Nov26.png" data-zoom-image="../GPI_downloads/SheppLogan_GPI-2013Nov26.png" height=56 width=100></a></td> </tr><tr> <td nowrap><a href=../GPI_downloads/TmapNode-2013Nov23.zip download target="_blank">TmapNode-2013Nov23.zip</a>, <a href=../GPI_downloads/TmapNode-2013Nov23.zip.md5sum>MD5</a></td> <td nowrap align="right">2013-11-23</td> <td nowrap align="right">236KB</td> <td align="left">The Tmap node converts dynamic magnitude and phase images into thermal maps.  It also generates an SNR mask and thermal dose maps.  <strong>Author: Charles Mougenot.
+</td> <td nowrap><a href=../GPI_downloads/TmapNode-2013Nov23.png><img id="zimg12" src="../GPI_downloads/TmapNode-2013Nov23.png" data-zoom-image="../GPI_downloads/TmapNode-2013Nov23.png" height=56 width=100></a></td> </tr><tr> <td nowrap><a href=../GPI_downloads/TmapNode-ExampleData-2013Nov23.zip download target="_blank">TmapNode-ExampleData-2013Nov23.zip</a>, <a href=../GPI_downloads/TmapNode-ExampleData-2013Nov23.zip.md5sum>MD5</a></td> <td nowrap align="right">2013-11-23</td> <td nowrap align="right"> 13MB</td> <td align="left">Example data set of a sonication in gel from <strong> Ari Partanen </strong> and  <strong> Charles Mougenot </strong>.  This set works directly with the network provided in the TmapNode zip.
+</td> <td nowrap><a href=../GPI_downloads/TmapNode-ExampleData-2013Nov23.png><img id="zimg13" src="../GPI_downloads/TmapNode-ExampleData-2013Nov23.png" data-zoom-image="../GPI_downloads/TmapNode-ExampleData-2013Nov23.png" height=56 width=100></a></td> </tr><tr> <td nowrap><a href=../GPI_downloads/ReadPhilips-r7818-2013Nov21.zip download target="_blank">ReadPhilips-r7818-2013Nov21.zip</a>, <a href=../GPI_downloads/ReadPhilips-r7818-2013Nov21.zip.md5sum>MD5</a></td> <td nowrap align="right">2013-11-21</td> <td nowrap align="right"> 18KB</td> <td align="left">PAR/REC Bug Fixes.
+</td> <td nowrap> </td> </tr><tr> <td nowrap><a href=../GPI_downloads/ReadPhilips-r7819-2013Nov21.zip download target="_blank">ReadPhilips-r7819-2013Nov21.zip</a>, <a href=../GPI_downloads/ReadPhilips-r7819-2013Nov21.zip.md5sum>MD5</a></td> <td nowrap align="right">2013-11-21</td> <td nowrap align="right"> 18KB</td> <td align="left">Ignores .par header information.
+</td> <td nowrap> </td> </tr><tr><th colspan="5"><hr style="border:dashed #C0C0C0; border-width:1px" width="90%"></th></tr></table>
+<script type="text/javascript">
+
+    var numImages = 14
+
+    for (var i=0; i <= numImages; i++)
+    {
+        $('#zimg' + i).elevateZoom({
+            cursor: "crosshair",
+            zoomWindowPosition: 12,
+            borderSize: 1, easing:true,
+            zoomWindowFadeIn: 300,
+            zoomWindowFadeOut: 300,
+            zoomWindowWidth: 640,
+            zoomWindowHeight: 480
+        }); 
+    }
+</script>
+</body></html>

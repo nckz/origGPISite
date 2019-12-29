@@ -1,0 +1,84 @@
+<!DOCTYPE html><html>
+<head>
+    <title>GPI Releases</title>
+
+    <script src='jquery-1.8.3.min.js'></script>
+    <script src='jquery.elevatezoom.js'></script>
+
+    <style>
+    p
+    {
+        max-width:700px;
+    }
+    </style>
+
+    <style>
+    figcaption 
+    {
+        max-width:700px;
+    }
+    </style>
+
+</head>
+<body>
+<figure>
+    <img src=./banner.png height="200" alt="GPI the Graphical Programming Interface.">
+    <figcaption align="left" style="MARGIN-LEFT: 64px"><font size="5"><i>Powered by Anaconda</i></font></figcaption>
+    <figcaption align="right" style="MARGIN-RIGHT: 64px"><font size="3"><i>Last Update: 2014-04-25 20:22:08.077612</i></font></figcaption>
+</figure>
+
+
+<hr>
+
+<h2>What is GPI?</h2>
+<video width="640" height="480" controls poster="GPIIntro_screencast.jpg">
+    <source src="GPIIntro_screencast.mp4" type="video/mp4">
+    <source src="GPIIntro_screencast.webm" type="video/webm">
+</video>
+
+<hr>
+
+<h2>Graphical Programming Interface</h2>
+
+Nicholas R. Zwart and James G. Pipe <br>
+<small>Neuroimaging Research, Barrow Neurological Institute, Phoenix, Arizona, United States</small><br>
+
+
+<figure>
+    <img src="gpi.gif" alt="Example Canvases" width="900">
+    <figcaption>Figure 1.  Screenshots of various GPI sessions.</figcaption>
+</figure>
+
+
+<p>
+<h3>Introduction</h3>  The Graphical Programming Interface (GPI) is a multi-platform, Python [1] based, application framework designed to modularize and link scientific algorithms, similar to projects such as AVS and Vision [2,3].  This framework simplifies algorithm development and deployment by abstracting the GUI API from the algorithm code and by allowing rapid prototyping of new algorithms that are aggregates of existing elements or unit test components of a larger method.  In contrast to similar projects, GPI has few dependencies, placing the feature development on the modules themselves. 
+</p>
+<p>
+<h3>User Interface</h3>  Algorithm modules are instantiated and connected via the canvas GUI (Fig. 1) to create workflows or processing pipelines as represented by a flow diagram.  Each module has an associated interactive window that allows parameters to be modified (through sliders, text boxes, etc...) or for information (such as images, plots, or text) to be displayed.  Changes, to the canvas or module windows, trigger new processing events that update each algorithm in realtime.  This gives immediate feedback to the user when exploring data at each point of a method process (e.g. slicing through 3D data volumes).
+</p>
+<p>
+<h3>Code Interface</h3>  Each node on the canvas represents a Python interface to underlying algorithm code, which can be written in any language that can be bound to Python.  The module interface allows UI elements to be added to its associated interactive window in a simple manner, separate from the algorithm.  The core algorithm can be instantiated as a separate process for developing without being incorporated in the Python namespace, allowing the instantiation of unique extension modules (over multiple recompilations) without restarting the Python interpreter (GPI session).  Developed modules can also be run as threads for faster shared memory use or as part of the application loop for new UI elements (plotters, displays, etc...).  The finished algorithm can then be easily deployed to another system (e.g. to a reconstruction processor) as it contains no GPI specific code.
+</p>
+<p>
+<h3>Conclusion</h3>  GPI provides a simple framework for developing and exploring new scientific algorithms.  The base algorithms can be developed without GPI specific code making them directly deployable to other systems.
+</p>
+
+<p>
+<h3>References</h3>  [1] G. van Rossum et al., CWI Quarterly, 4, 1991;  [2] C. Upson et al., IEEE Comput. Graph., 9, 1989;  [3] M. F. Sanner, Structure, 13, 2005.  
+
+
+</p>
+
+<h3>Abstract</h3>
+<p>
+N. R. Zwart and J. G. Pipe, "Graphical Programming Interface", in ISMRM Workshop on Data Sampling and Image Reconstruction, (Sedona, Arizona), 2013.
+</p>
+
+<h3>Acknowledgements</h3> <p> This work is supported by Philips Healthcare.</p>
+
+<h3>Availability</h3>
+<p>
+GPI is currently available to Philips research sites.  For more information, ask your local Philips research representative.
+</p>
+
+</body></html>
