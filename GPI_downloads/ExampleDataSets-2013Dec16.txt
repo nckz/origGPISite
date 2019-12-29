@@ -1,0 +1,1 @@
+Data sets provided during the GPI training course for testing the ReadPhilips node.

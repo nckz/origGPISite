@@ -1,0 +1,1 @@
+Added support for lab/raw/sin data sets.  Updated commandline interface to readPhilipsExports.py.
