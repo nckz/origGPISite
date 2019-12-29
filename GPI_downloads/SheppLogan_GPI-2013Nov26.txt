@@ -1,0 +1,1 @@
+Generates a Shepp-Logan phantom of a specified size.  <strong> Author: David Smith.

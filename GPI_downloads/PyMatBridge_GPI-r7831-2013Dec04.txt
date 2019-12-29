@@ -1,0 +1,6 @@
+This is a MATLAB to Python bridge node that allows the user to enter and execute
+MATLAB code within the node menu interface.  It requires PyMatBridge and a copy
+of MATLAB.  <em> NOTE: This was from a pre-alpha release and has not been developed
+since.  Updates are welcome. </em>
+
+

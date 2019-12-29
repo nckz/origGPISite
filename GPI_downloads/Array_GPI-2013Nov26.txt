@@ -1,0 +1,1 @@
+Array generates an ndarray with specified dimensions that is filled with zeros, ones, or uniform or normal random deviates. <strong> Author: David Smith.
